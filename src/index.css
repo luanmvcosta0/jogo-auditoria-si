@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+/* ── Animações originais do NestCat (pet-cat-si) ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-18px); }
+}
+@keyframes glow-pulse {
+  0%, 100% { filter: drop-shadow(0 0 12px #E0234E) drop-shadow(0 0 28px rgba(224, 35, 78, 0.5)); }
+  50% { filter: drop-shadow(0 0 24px #E0234E) drop-shadow(0 0 55px rgba(224, 35, 78, 0.75)); }
+}
+@keyframes blink {
+  0%, 88%, 100% { transform: scaleY(1); }
+  92% { transform: scaleY(0.06); }
+  96% { transform: scaleY(1); }
+}
+@keyframes tail-sway {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+
+.animate-float { animation: float 3.2s ease-in-out infinite; }
+.animate-glow { animation: glow-pulse 2.4s ease-in-out infinite; }
+.animate-blink-left { transform-origin: 170px 182px; animation: blink 4.5s ease-in-out infinite; }
+.animate-blink-right { transform-origin: 230px 182px; animation: blink 4.5s ease-in-out 0.15s infinite; }
+.animate-tail { transform-origin: 272px 345px; animation: tail-sway 1.8s ease-in-out infinite; }
+
+/* ── Novas animações do jogo ── */
+@keyframes tail-fast {
+  0%, 100% { transform: rotate(-12deg); }
+  50% { transform: rotate(12deg); }
+}
+@keyframes lupa-bob {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-6deg); }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+@keyframes pop {
+  0% { transform: scale(0.85); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-tail-fast { transform-origin: 272px 345px; animation: tail-fast 0.5s ease-in-out infinite; }
+.animate-lupa { transform-origin: 292px 440px; animation: lupa-bob 2.6s ease-in-out infinite; }
+.shake { animation: shake 0.45s ease-in-out; }
+.pop { animation: pop 0.35s ease-out both; }
+.fade-in { animation: fade-in 0.35s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* ── Componentes ── */
+@layer components {
+  .card {
+    @apply rounded-2xl border border-[#E0234E]/25 bg-[#16121c]/80 backdrop-blur-sm p-5 md:p-6;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl bg-[#E0234E] px-6 py-3 font-semibold text-white shadow-lg shadow-[#E0234E]/30 transition hover:bg-[#F03560] active:scale-[0.98] cursor-pointer;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-6 py-3 font-semibold text-white/85 transition hover:bg-white/10 active:scale-[0.98] cursor-pointer;
+  }
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  background: #0D0D14;
+}
+
+@media print {
+  .no-print, header, button, a { display: none !important; }
+  body, .min-h-screen { background: white !important; color: black !important; }
+  .card { border-color: #E0234E !important; background: white !important; color: black !important; }
+  .card * { color: black !important; }
+  input { border-color: #E0234E !important; }
+}
